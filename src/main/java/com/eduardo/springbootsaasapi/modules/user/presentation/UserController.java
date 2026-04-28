@@ -24,6 +24,8 @@ import com.eduardo.springbootsaasapi.shared.application.dto.PaginatedResultDTO;
 import com.eduardo.springbootsaasapi.shared.application.mappers.TableResponseMapper;
 import com.eduardo.springbootsaasapi.shared.infrastructure.reports.JasperReportService;
 
+import org.springframework.http.HttpHeaders;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,20 +79,17 @@ public class UserController {
     @SuppressWarnings("null")
     @GetMapping("/report")
     public ResponseEntity<byte[]> usersReport(
-            @AuthenticationPrincipal(expression = "id") Integer userId,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "50") int size) {
+            @AuthenticationPrincipal(expression = "id") Integer userId) {
 
-        Pageable pageable = PageRequest.of(page, size);
-
-        Page<UserDetailDTO> usersPage = userService.getAllUsers(userId, pageable);
+        List<UserDetailDTO> usersPage = userService.getUsersReport(userId);
 
         byte[] pdf = jasperReportService.generateReport(
                 "Users",
-                usersPage.getContent());
+                usersPage);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users-report.pdf")
                 .body(pdf);
     }
 

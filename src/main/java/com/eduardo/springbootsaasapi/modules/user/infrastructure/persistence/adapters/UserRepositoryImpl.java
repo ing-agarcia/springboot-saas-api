@@ -76,4 +76,9 @@ public class UserRepositoryImpl implements UserRepository {
                 .map(userEntityMapper::toHierarchy)
                 .toList();
     }
+
+    @Override
+    public List<UserDetailDTO> findUsersReport(Integer userId) {
+        return jpaUserRepository.findUsersReport(userId);
+    }
 }

@@ -35,7 +35,14 @@ public interface JpaUserRepository extends JpaRepository<UserEntity, Integer> {
                     LEFT JOIN u.manager m
                 WHERE uh.parentUserId = :userId
                 ORDER BY u.role.id
-            """, countQuery = "SELECT COUNT(u) FROM UserEntity u")
+            """, countQuery = """
+                    SELECT
+                        COUNT(u)
+                    FROM
+                        UserHierarchy uh JOIN UserEntity u ON u.id = uh.childUserId
+                    WHERE
+                        uh.parentUserId = :userId
+            """)
     Page<UserDetailDTO> findAllUsers(Integer userId, Pageable pageable);
 
     @Query(value = """
@@ -75,4 +82,26 @@ public interface JpaUserRepository extends JpaRepository<UserEntity, Integer> {
             """)
     List<UserHierarchyDTO> getUsersByRole(@Param("roleId") Integer roleId);
 
+    @Query(value = """
+                SELECT new com.eduardo.springbootsaasapi.modules.user.application.dto.UserDetailDTO(
+                    u.id,
+                    u.name,
+                    u.email,
+                    r.name,
+                    r.id,
+                    g.name,
+                    g.id,
+                    m.name,
+                    m.id,
+                    u.createdAt
+                )
+                FROM UserHierarchy uh
+                    JOIN UserEntity u ON u.id = uh.childUserId
+                    LEFT JOIN u.role r
+                    LEFT JOIN u.group g
+                    LEFT JOIN u.manager m
+                WHERE uh.parentUserId = :userId
+                ORDER BY u.role.id
+            """)
+    List<UserDetailDTO> findUsersReport(Integer userId);
 }

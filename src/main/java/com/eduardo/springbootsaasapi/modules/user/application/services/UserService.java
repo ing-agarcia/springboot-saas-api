@@ -102,4 +102,8 @@ public class UserService {
                 .map(UserMapper::toHierarchy)
                 .toList();
     }
+
+    public List<UserDetailDTO> getUsersReport(Integer userId) {
+        return userRepository.findUsersReport(userId);
+    }
 }
