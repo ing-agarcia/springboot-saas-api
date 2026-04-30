@@ -1,94 +1,147 @@
 # 🚀 SaaS Dashboard - Spring Boot API
 
-Backend service built with **Spring Boot** that implements the core business logic of a SaaS analytics platform.
+Backend service built with **Spring Boot** that implements a shared business domain within a multi-implementation SaaS architecture.
 
-This project is part of a **multi-implementation architecture**, where the same domain is developed using different backend technologies.
+This project is part of a system where the same domain is developed using different backend technologies, demonstrating technology-agnostic design.
+
+---
 
 ## 🧠 Concept
 
-This repository represents a Java (Spring Boot) implementation of a shared domain.
+This repository represents the **Java (Spring Boot)** implementation of a shared business domain.
 
-The same business domain has been implemented using multiple backend technologies:
+The same domain is also implemented using:
 
-Node.js (TypeScript)
-Java (Spring Boot)
+- Node.js (TypeScript)
+- Java (Spring Boot)
 
-This approach demonstrates how domain logic can remain consistent and technology-agnostic, regardless of the underlying stack.
+Both implementations:
+
+- Share the same domain rules  
+- Expose similar APIs  
+- Can be used interchangeably by the frontend  
+
+This approach demonstrates how business logic can remain consistent regardless of the underlying technology.
+
+---
 
 ## 🎯 Purpose
 
 This service handles core backend responsibilities, including:
 
-* User and role management
-* Organizational hierarchy (manager relationships)
-* Data aggregation for analytics dashboards
-* Business rule enforcement
+- User and role management  
+- Organizational hierarchy (manager relationships)  
+- Data aggregation for analytics dashboards  
+- Business rule enforcement  
 
-It provides structured data for a frontend dashboard and integrates with a forecasting service.
+It provides structured data for a frontend dashboard and integrates with a forecasting microservice.
+
+---
 
 ## 🔄 System Context
 
-Frontend (React)
+```bash
+        Frontend (React)
         ↓
-Spring Boot API (Java)
+        Backend (Spring Boot / Node.js)
         ↓
-Database
+        Database (PostgreSQL / MySQL)
         ↘
-         FastAPI (Forecast - Python)
+          FastAPI (Forecast Microservice)
+```
+
+---
+
+## 🔗 Related Repositories
+
+- Frontend → https://github.com/ing-agarcia/react-saas-dashboard-analytics  
+- Node.js Implementation → https://github.com/ing-agarcia/saas-dashboard-api-node  
+- Forecast Microservice → https://github.com/ing-agarcia/fastapi-forecast  
+
+---
+
+## 📦 Installation
+
+```bash
+git clone <repo>
+cd springboot-saas-api
+./mvnw clean install
+
+./mvnw spring-boot:run
+```
+
+---
 
 ## 🚀 Features
 
-* User Management (CRUD)
-* Role & Group Management
-* Hierarchical relationships (Manager → User)
-* Dashboard data aggregation
-* RESTful API design
-* Clean layered architecture (Controller / Service / Repository)
+- User Management (CRUD)
+- Role & Group Management
+- Hierarchical relationships (Manager → User)
+- Dashboard data aggregation
+- RESTful API design
+- Clean layered architecture (Controller / Service / Repository)
+
+---
 
 ## 🧩 Architecture Approach
 
 This project follows:
 
-* Layered architecture
-* Separation of concerns
-* Domain-driven design principles
+- Layered architecture
+- Separation of concerns
+- Domain-driven design (DDD) principles
 
 It mirrors the same domain logic implemented in the Node.js version of the system.
 
-## ⚙️ Tech Stack
+---
 
-* Java 17+
-* Spring Boot
-* Spring Data JPA
-* Hibernate
-* Maven
-* REST APIs
+## ⚙️ Tech Stack
+- Java 17+
+- Spring Boot
+- Spring Data JPA
+- Hibernate
+- Maven
+- REST APIs
+
+---
 
 ## 📊 Use Cases
 
-* Powering SaaS dashboards
-* Managing organizational structures
-* Providing data for analytics and forecasting
-* Supporting multi-technology backend strategies
+- Powering SaaS dashboards
+- Managing organizational structures
+- Providing data for analytics and forecasting
+- Supporting multi-technology backend strategies
+
+---
 
 ## 🧪 Best Practices
 
-* Clean code structure
-* Domain-focused design
-* Scalable architecture
-* Technology-agnostic business logic
+- Clean code structure
+- Domain-focused design
+- Scalable architecture
+- Technology-agnostic business logic
+
+---
 
 ## 🚀 Future Improvements
 
-* CI/CD pipeline
-* Integration testing
-* Caching (Redis)
-* Event-driven communication
+- CI/CD pipeline
+- Integration testing
+- Caching (Redis)
+- Event-driven communication
+
+---
+
+## 🧠 Key Takeaway
+
+This project demonstrates how the same business domain can be implemented across different technologies while maintaining consistency, scalability, and clean architecture principles.
+
+---
 
 ## 👨‍💻 Author
 
-This project demonstrates:
+Project focused on demonstrating:
 
-* Implementation of the same domain across multiple technologies
-* Strong understanding of backend architecture
-* Ability to design technology-agnostic systems
+- Implementation of the same domain across multiple technologies
+- Strong understanding of backend architecture
+- Ability to design scalable and technology-agnostic systems
