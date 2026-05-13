@@ -96,8 +96,8 @@ public class UserService {
         return userRepository.findUserDTOById(id);
     }
 
-    public List<UserHierarchyDTO> getUsersByRole(Integer roleId) {
-        return userRepository.getUsersByRole(roleId)
+    public List<UserHierarchyDTO> getManagersByRole(Integer roleId) {
+        return userRepository.getManagersByRole(roleId)
                 .stream()
                 .map(UserMapper::toHierarchy)
                 .toList();
@@ -105,5 +105,12 @@ public class UserService {
 
     public List<UserDetailDTO> getUsersReport(Integer userId) {
         return userRepository.findUsersReport(userId);
+    }
+
+    public List<UserHierarchyDTO> getUsersByRole(Integer roleId) {
+        return userRepository.getUsersByRole(roleId)
+                .stream()
+                .map(UserMapper::toHierarchy)
+                .toList();
     }
 }

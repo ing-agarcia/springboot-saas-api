@@ -25,7 +25,9 @@ public interface UserRepository {
 
     Optional<UserDetailDTO> findUserDTOById(Integer id);
 
-    List<User> getUsersByRole(Integer roleId);
+    List<User> getManagersByRole(Integer roleId);
 
     List<UserDetailDTO> findUsersReport(Integer userId);
+
+    List<User> getUsersByRole(Integer roleId);
 }

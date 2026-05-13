@@ -1,6 +1,7 @@
 package com.eduardo.springbootsaasapi.modules.opportunity.core.application.dto;
 
-public record CreateOpportunityDTO(
+public record OpportunityCreateDTO(
+                Integer id,
                 Integer ownerId,
                 String name,
                 String stage,

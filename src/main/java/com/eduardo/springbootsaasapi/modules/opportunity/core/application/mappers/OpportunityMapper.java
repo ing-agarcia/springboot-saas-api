@@ -1,22 +1,33 @@
 package com.eduardo.springbootsaasapi.modules.opportunity.core.application.mappers;
 
-import com.eduardo.springbootsaasapi.modules.opportunity.core.application.dto.CreateOpportunityDTO;
+import org.springframework.stereotype.Component;
+
+import com.eduardo.springbootsaasapi.modules.opportunity.core.application.dto.OpportunityCreateDTO;
 import com.eduardo.springbootsaasapi.modules.opportunity.core.application.dto.OpportunityDTO;
 import com.eduardo.springbootsaasapi.modules.opportunity.core.domain.entities.Opportunity;
+import com.eduardo.springbootsaasapi.modules.user.infrastructure.persistence.entities.UserEntity;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
+@Component
 public class OpportunityMapper {
 
-    public static OpportunityDTO toDto(Opportunity opportunity) {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public OpportunityDTO toDto(Opportunity opportunity) {
         return new OpportunityDTO(
                 opportunity.getId(),
                 opportunity.getOwnerId(),
+                entityManager.getReference(UserEntity.class, opportunity.getOwnerId()).getName(),
                 opportunity.getName(),
                 opportunity.getStage(),
                 opportunity.getProbability(),
                 opportunity.getCreatedAt());
     }
 
-    public static Opportunity toEntity(OpportunityDTO opportunityDTO) {
+    public Opportunity toEntity(OpportunityDTO opportunityDTO) {
         return new Opportunity(
                 opportunityDTO.id(),
                 opportunityDTO.ownerId(),
@@ -26,9 +37,9 @@ public class OpportunityMapper {
                 opportunityDTO.createdAt());
     }
 
-    public static Opportunity toOpportunity(CreateOpportunityDTO createOpportunityDTO) {
+    public Opportunity toCreateEntity(OpportunityCreateDTO createOpportunityDTO) {
         return new Opportunity(
-                null,
+                createOpportunityDTO.id(),
                 createOpportunityDTO.ownerId(),
                 createOpportunityDTO.name(),
                 createOpportunityDTO.stage(),

@@ -2,7 +2,8 @@ package com.eduardo.springbootsaasapi.modules.opportunity.core.domain.repositori
 
 import java.util.Optional;
 
-import com.eduardo.springbootsaasapi.modules.opportunity.core.application.dto.OpportunityDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.eduardo.springbootsaasapi.modules.opportunity.core.domain.entities.Opportunity;
 
 public interface OpportunityRepository {
@@ -10,6 +11,8 @@ public interface OpportunityRepository {
 
     Optional<Opportunity> findByName(String name);
 
-    Optional<OpportunityDTO> findDTOById(Integer id);
+    Optional<Opportunity> findById(Integer id);
+
+    Page<Opportunity> findAllByUserId(Integer userId, Pageable pageable);
 
 }

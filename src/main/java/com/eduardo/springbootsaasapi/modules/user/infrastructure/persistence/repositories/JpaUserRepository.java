@@ -80,7 +80,7 @@ public interface JpaUserRepository extends JpaRepository<UserEntity, Integer> {
                 JOIN RoleHierarchyEntity rh ON u.role.id = rh.parentRole.id
                 WHERE rh.role.id = :roleId
             """)
-    List<UserHierarchyDTO> getUsersByRole(@Param("roleId") Integer roleId);
+    List<UserHierarchyDTO> getManagersByRole(@Param("roleId") Integer roleId);
 
     @Query(value = """
                 SELECT new com.eduardo.springbootsaasapi.modules.user.application.dto.UserDetailDTO(
@@ -104,4 +104,11 @@ public interface JpaUserRepository extends JpaRepository<UserEntity, Integer> {
                 ORDER BY u.role.id
             """)
     List<UserDetailDTO> findUsersReport(Integer userId);
+
+    @Query(value = """
+                SELECT u
+                FROM UserEntity u
+                WHERE u.role.id = :roleId
+            """)
+    List<UserEntity> getUsersByRole(@Param("roleId") Integer roleId);
 }

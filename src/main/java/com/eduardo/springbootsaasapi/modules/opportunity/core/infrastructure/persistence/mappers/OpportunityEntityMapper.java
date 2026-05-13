@@ -1,4 +1,4 @@
-package com.eduardo.springbootsaasapi.modules.opportunity.core.infrastructure.domain;
+package com.eduardo.springbootsaasapi.modules.opportunity.core.infrastructure.persistence.mappers;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Component
-public class OpportunityMapperEntity {
+public class OpportunityEntityMapper {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -39,4 +39,5 @@ public class OpportunityMapperEntity {
 
         return opportunity;
     }
+
 }

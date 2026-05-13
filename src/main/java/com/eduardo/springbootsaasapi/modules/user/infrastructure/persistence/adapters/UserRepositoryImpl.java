@@ -70,8 +70,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getUsersByRole(Integer roleId) {
-        return jpaUserRepository.getUsersByRole(roleId)
+    public List<User> getManagersByRole(Integer roleId) {
+        return jpaUserRepository.getManagersByRole(roleId)
                 .stream()
                 .map(userEntityMapper::toHierarchy)
                 .toList();
@@ -80,5 +80,13 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<UserDetailDTO> findUsersReport(Integer userId) {
         return jpaUserRepository.findUsersReport(userId);
+    }
+
+    @Override
+    public List<User> getUsersByRole(Integer roleId) {
+        return jpaUserRepository.getUsersByRole(roleId)
+                .stream()
+                .map(userEntityMapper::toDomain)
+                .toList();
     }
 }

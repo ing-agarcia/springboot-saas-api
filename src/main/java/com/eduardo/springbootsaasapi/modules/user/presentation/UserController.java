@@ -94,6 +94,11 @@ public class UserController {
     }
 
     @GetMapping("/managers/{roleId}")
+    public ResponseEntity<List<UserHierarchyDTO>> getManagersByRole(@PathVariable Integer roleId) {
+        return ResponseEntity.ok(userService.getManagersByRole(roleId));
+    }
+
+    @GetMapping("/role/{roleId}")
     public ResponseEntity<List<UserHierarchyDTO>> getUsersByRole(@PathVariable Integer roleId) {
         return ResponseEntity.ok(userService.getUsersByRole(roleId));
     }

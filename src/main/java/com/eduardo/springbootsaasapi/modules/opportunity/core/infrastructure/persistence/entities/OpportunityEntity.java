@@ -11,7 +11,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "opportunity")
+@Table(name = "opportunities")
 @Data()
 
 public class OpportunityEntity {
