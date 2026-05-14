@@ -42,12 +42,12 @@ It provides structured data for a frontend dashboard and integrates with a forec
 
 ```bash
         Frontend (React)
-        ↓
-        Backend (Spring Boot / Node.js)
-        ↓
-        Database (PostgreSQL / MySQL)
-        ↘
-          FastAPI (Forecast Microservice)
+                ↓
+    Backend (Spring Boot / Node.js)
+           ↓             ↓
+     Database       Redis Pub/Sub
+           ↘
+        FastAPI (Forecast Service)
 ```
 
 ---
@@ -80,6 +80,9 @@ cd springboot-saas-api
 - Dashboard data aggregation
 - RESTful API design
 - Clean layered architecture (Controller / Service / Repository)
+- Redis Pub/Sub event communication
+- Typed domain events
+- Event-driven architecture patterns
 
 ---
 
@@ -90,8 +93,30 @@ This project follows:
 - Layered architecture
 - Separation of concerns
 - Domain-driven design (DDD) principles
+- Event-driven communication patterns
+- Infrastructure abstraction for messaging systems
 
-It mirrors the same domain logic implemented in the Node.js version of the system.
+The application separates:
+
+- Domain models
+- Persistence entities
+- DTO projections
+- Messaging/event contracts
+
+It mirrors the same business domain implemented in other backend technologies while keeping the core logic technology-agnostic.
+
+---
+
+## 📡 Event-Driven Communication
+
+The application uses Redis Pub/Sub to publish domain events such as:
+
+- OPPORTUNITY_CREATED
+- STAGE_CHANGED
+- PROBABILITY_INCREASED
+- PROBABILITY_DECREASED
+
+Messaging is abstracted through a publisher interface, allowing future migration to technologies such as Kafka or RabbitMQ without impacting domain logic.
 
 ---
 
@@ -102,6 +127,7 @@ It mirrors the same domain logic implemented in the Node.js version of the syste
 - Hibernate
 - Maven
 - REST APIs
+- Redis (Pub/Sub messaging)
 
 ---
 
@@ -120,6 +146,9 @@ It mirrors the same domain logic implemented in the Node.js version of the syste
 - Domain-focused design
 - Scalable architecture
 - Technology-agnostic business logic
+- Event abstraction via interfaces
+- Typed event contracts
+- Decoupled messaging infrastructure
 
 ---
 
@@ -127,8 +156,8 @@ It mirrors the same domain logic implemented in the Node.js version of the syste
 
 - CI/CD pipeline
 - Integration testing
-- Caching (Redis)
-- Event-driven communication
+- Kafka integration
+- WebSocket realtime notifications
 
 ---
 

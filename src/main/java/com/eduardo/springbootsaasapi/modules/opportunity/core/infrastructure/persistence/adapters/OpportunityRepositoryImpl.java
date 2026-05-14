@@ -25,7 +25,7 @@ public class OpportunityRepositoryImpl implements OpportunityRepository {
     @Override
     public Opportunity save(Opportunity opportunity) {
         OpportunityEntity entity = opportunityMapperEntity.toEntity(opportunity);
-        System.out.println(entity);
+
         OpportunityEntity saved = jpaOpportunityRepository.save(entity);
         return opportunityMapperEntity.toDomain(saved);
     }

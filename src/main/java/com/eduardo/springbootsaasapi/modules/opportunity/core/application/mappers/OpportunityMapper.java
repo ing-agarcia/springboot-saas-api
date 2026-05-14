@@ -37,7 +37,7 @@ public class OpportunityMapper {
                 opportunityDTO.createdAt());
     }
 
-    public Opportunity toCreateEntity(OpportunityCreateDTO createOpportunityDTO) {
+    public Opportunity toDomainCreate(OpportunityCreateDTO createOpportunityDTO) {
         return new Opportunity(
                 createOpportunityDTO.id(),
                 createOpportunityDTO.ownerId(),

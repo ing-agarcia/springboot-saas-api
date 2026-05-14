@@ -31,7 +31,7 @@ public class OpportunityController {
 
     @PostMapping
     public ResponseEntity<OpportunityDTO> newOpportunity(@RequestBody OpportunityCreateDTO createOpportunityDTO) {
-        System.out.println(createOpportunityDTO);
+
         OpportunityDTO opportunity = opportunityService.newOpportunity(createOpportunityDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(opportunity);
     }
